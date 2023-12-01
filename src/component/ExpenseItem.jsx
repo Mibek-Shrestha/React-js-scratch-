@@ -6,8 +6,6 @@ const ExpenseItem = ({ title, amount, date }) => {
 
     return (
         <Card className='expense-item'>
-
-
             <Date date={date} />
             <div className='expense-item__description'>
                 <h2>{title}</h2>

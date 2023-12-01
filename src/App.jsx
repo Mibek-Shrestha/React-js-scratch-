@@ -1,12 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Expenses from './component/Expenses'
-
-
-
-
+import AddExpense from './component/AddExpense';
+import ExpensesFilter from './component/ExpensesFilter';
 
 const App = () => {
-  const expense = [
+  const DUMMY = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -27,12 +25,31 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const [expenses, setExpense] = useState(DUMMY);
+  const addExpenseHandler = enteredExpense => {
+    setExpense([enteredExpense, ...expenses])
+  }
+
+  const [filterData, setfilterData] = useState('');
+
+  const onFilter = (filterValue) => {
+    setfilterData(filterValue)
+    console.log(filterData);
+
+  }
   return (
     <>
-      <Expenses expense={expense} />
+      <AddExpense onSubmited={addExpenseHandler} />
+      <ExpensesFilter onChangeFilter={onFilter} />
+      <Expenses expense={expenses} />
 
     </>
   )
+
 }
 
 export default App
+
+
+
